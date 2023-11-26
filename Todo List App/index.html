@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Todo List App</title>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <h1>Todo List</h1>
+            <div class="add-task">
+                <input v-model="newTask" @keyup.enter="addTask" type="text" placeholder="Add a new task">
+                <button @click="addTask">Add</button>
+            </div>
+            <div class="tasks">
+                <div v-for="(task, index) in filteredTasks" :key="index" class="task">
+                    <input type="checkbox" v-model="task.completed" class="task-checkbox">
+                    <span :class="{ completed: task.completed }">{{ task.text }}</span>
+                    <button @click="editTask(index)">Edit</button>
+                    <button @click="deleteTask(index)">Delete</button>
+                </div>
+            </div>
+            <div class="filter">
+                <label>Show:
+                    <select v-model="filterStatus">
+                        <option value="all">All</option>
+                        <option value="active">Active</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>

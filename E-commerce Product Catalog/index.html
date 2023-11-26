@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>E-commerce Product Catalog</title>
+</head>
+<body>
+
+<div id="app">
+    <div class="filters">
+        <label>Sort by:
+            <select v-model="sortBy">
+                <option value="name">Name</option>
+                <option value="price">Price</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="product-list">
+        <div v-for="product in sortedProducts" :key="product.id" class="product-item">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <p>Price: ${{ product.price.toFixed(2) }}</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="app.js"></script>
+</body>
+</html>

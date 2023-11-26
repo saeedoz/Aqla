@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Weather App</title>
+</head>
+<body>
+
+<div id="app">
+    <div class="search-container">
+        <input type="text" v-model="location" placeholder="Enter location">
+        <button @click="getWeather">Get Weather</button>
+    </div>
+
+    <div v-if="weatherData" class="weather-info">
+        <h2>{{ weatherData.name }}, {{ weatherData.sys.country }}</h2>
+        <p>{{ weatherData.weather[0].description }}</p>
+        <p>Temperature: {{ weatherData.main.temp }}°C</p>
+        <p>Humidity: {{ weatherData.main.humidity }}%</p>
+    </div>
+
+    <div v-if="forecastData" class="forecast">
+        <h3>5-Day Forecast</h3>
+        <div v-for="day in forecastData.list" :key="day.dt" class="forecast-item">
+            <p>{{ formatDate(day.dt) }}</p>
+            <p>{{ day.weather[0].description }}</p>
+            <p>Temp: {{ day.main.temp }}°C</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="app.js"></script>
+</body>
+</html>

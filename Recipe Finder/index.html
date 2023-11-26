@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Recipe Finder</title>
+</head>
+<body>
+
+<div id="app">
+    <div class="search-container">
+        <input type="text" v-model="query" placeholder="Enter ingredients or keywords">
+        <button @click="searchRecipes">Search Recipes</button>
+    </div>
+
+    <div v-if="recipes" class="recipe-list">
+        <div v-for="recipe in recipes" :key="recipe.recipe.uri" class="recipe-item">
+            <h3>{{ recipe.recipe.label }}</h3>
+            <p>Ingredients: {{ recipe.recipe.ingredientLines.join(', ') }}</p>
+            <p><a :href="recipe.recipe.url" target="_blank">Instructions</a></p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="app.js"></script>
+</body>
+</html>
